@@ -1,1 +1,2 @@
 $("#total_<%= @prompt.id %>").text(' <%= @prompt.votesA + @prompt.votesB %>');
+$('#vote_<%= @prompt.id %>').html('<p> option a: <%= @prompt.votesA %> </p> <p> option b: <%= @prompt.votesB %> </p> ');
