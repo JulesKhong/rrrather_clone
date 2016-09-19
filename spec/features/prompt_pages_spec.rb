@@ -15,4 +15,11 @@ describe 'the prompt' do
     click_on 'Create Prompt'
     expect(page).to have_content('You can\'t win')
   end
+
+  it 'shouls allow user to delete a prompt' do
+    FactoryGirl.create(:prompt)
+    visit root_path
+    click_on 'Delete'
+    expect(page).to not_have_content('Would you rather...')
+  end
 end

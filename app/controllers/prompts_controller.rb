@@ -19,6 +19,16 @@ class PromptsController < ApplicationController
     end
   end
 
+  def destroy
+    @prompt = Prompt.find(params[:id])
+    @prompt.destroy
+    binding
+    respond_to do |format|
+      format.html {redirect_to root_path}
+      format.js
+    end
+  end
+
 
 
   private
