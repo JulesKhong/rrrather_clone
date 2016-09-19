@@ -1,4 +1,7 @@
+<%= link_to "New", new_prompt_path, id: "new_link", remote: true %>
+<div id="new_prompt"></div>
 
+<div class="col-sm-12" id="all_prompts">
   <% @prompts.each do |prompt| %>
     <div class="row">
       <h3>Would you rather...</h3>
@@ -21,3 +24,4 @@
     </div>
     <hr>
   <% end %>
+</div>

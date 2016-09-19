@@ -10,10 +10,13 @@ class PromptsController < ApplicationController
   def create
     @prompt = Prompt.new(prompt_params)
     if @prompt.save
-      flash[:notice] = 'prompt was saved'
-      redirect_to root_path
+      flash[:notice] = 'Prompt was saved'
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     else
-      flash[:alert] = 'prompt was not saved'
+      flash[:alert] = 'Prompt was not saved'
       render :new
     end
   end
