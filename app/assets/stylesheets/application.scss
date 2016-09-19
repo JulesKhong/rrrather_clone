@@ -1,6 +1,10 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ // div {
+ //   border:solid;
+ // }
+
  .navbar {
    background-color: #89BE41;
    .navbar-brand {
@@ -10,3 +14,7 @@
      color: white;
    }
  }
+
+ .col-sm-2 {
+   padding:2% 0% 0% 2%;
+  }

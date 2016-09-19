@@ -3,7 +3,6 @@
 
 <div class="col-sm-12" id="all_prompts">
   <% @prompts.each do |prompt| %>
-
     <div class="row" id="prompt_<%=prompt.id%>">
       <h3>Would you rather...</h3>
       <div class="col-sm-4">
@@ -11,15 +10,22 @@
       </div>
       <div class="col-sm-2">
         <h4>or</h4>
+        <p id="total_<%= prompt.id %>">Total: <%= prompt.votesA + prompt.votesB %></p>
       </div>
       <div class="col-sm-4">
         <h3><%= prompt.optionB %></h3>
       </div>
-
       <div class="col-md-4 offset-md-4">
-        <p>
-          <%= prompt.description %>
-        </p>
+        <div class="AB_vote">
+          <%= form_tag("/prompts/#{prompt.id}", method: :patch, remote: true) do %>
+            <%= radio_button_tag :vote, value: "Option A"  %>
+            <%= label_tag :vote, 'Option A' %><br>
+            <%= radio_button_tag :vote, value: "Option B" %>
+            <%= label_tag :vote, 'Option B' %>
+          <%= submit_tag "Vote", :class => "btn btn-default" %>
+          <% end %>
+        </div>
+        <p><%= prompt.description %></p>
       </div>
       <%= link_to "Delete", prompt_path(prompt), data: { confirm: 'Are you sure?', method: :delete} %>
     </div>
