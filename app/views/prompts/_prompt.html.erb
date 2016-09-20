@@ -21,6 +21,30 @@
     </div>
     <p><%= prompt.description %></p>
   </div>
-  <%= link_to "Delete", prompt_path(prompt), data: { confirm: 'Are you sure?', method: :delete} %>
+  <div class="col-sm-2">
+    <%= link_to "Delete", prompt_path(prompt), data: { confirm: 'Are you sure?', method: :delete} %>
+    <%= form_for [prompt, Feedback.new], remote: true do |f| %>
+      <%= f.label :username, 'Username' %>
+      <%= f.text_field :username %>
+
+      <%= f.label :comment, 'Comment' %>
+      <%= f.text_area :comment %>
+
+      <%= f.submit 'Add Comment' %>
+    <% end %>
+    <div id="feedback_list_<%= prompt.id%>">
+      <% if prompt.feedbacks.any ? %>
+        <%= prompt.feedbacks.each do |feedback| %>
+          <p>
+            feedback.comment
+          </p>
+          <p>
+            <em>feedback.username</em>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <hr>
+  </div>
 </div>
 <hr>

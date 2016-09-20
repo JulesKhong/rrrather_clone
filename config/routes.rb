@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "prompts#index"
 
-  resources :prompts
-  resources :feedbacks
+  resources :prompts do
+    resources :feedbacks
+  end
 end

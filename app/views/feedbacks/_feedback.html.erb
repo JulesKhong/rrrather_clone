@@ -1,0 +1,11 @@
+  <% if prompt.feedbacks.any ? %>
+    <%= prompt.feedbacks.each do |feedback| %>
+      <p>
+        feedback.comment
+      </p>
+      <p>
+        <em>feedback.username</em>
+      </p>
+    <% end %>
+  <% end %>
+  <hr>
