@@ -32,9 +32,9 @@ class PromptsController < ApplicationController
     @prompt = Prompt.find(params[:id])
     #binding.pry
     if params[:vote] === "Option A"
-      @prompt.votesA += 1
+      @prompt.votes_a += 1
     else
-      @prompt.votesB += 1
+      @prompt.votes_b += 1
     end
     @prompt.save
     respond_to do | format |
@@ -45,6 +45,6 @@ class PromptsController < ApplicationController
 
   private
   def prompt_params
-    params.require(:prompt).permit(:optionA, :optionB, :author, :description)
+    params.require(:prompt).permit(:option_a, :option_b, :author, :description)
   end
 end

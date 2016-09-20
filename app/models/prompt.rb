@@ -4,8 +4,9 @@ class Prompt < ApplicationRecord
   after_create :set_default
 
   def set_default
-    self.votesA = 0
-    self.votesB = 0
+    self.votes_a = 0
+    self.votes_b = 0
+    self.save
   end
 
   def self.search(search)

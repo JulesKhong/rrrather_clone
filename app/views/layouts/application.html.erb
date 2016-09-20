@@ -20,7 +20,6 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Explore all<span class="sr-only">(current)</span></a></li>
-          <li><%= link_to "New", new_prompt_path %></li>
         </ul>
         <%= form_tag prompts_path, :method => 'get', :class => "navbar-form navbar-left" do %>
           <p>
@@ -28,7 +27,7 @@
             <%= submit_tag "Search", :name => nil %>
           </p>
         <% end %>
-        
+
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Link</a></li>
         </ul>

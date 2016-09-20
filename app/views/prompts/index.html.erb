@@ -3,32 +3,34 @@
 <div id="new_prompt"></div>
 
 <div class="col-sm-12" id="all_prompts">
-  <% @prompts.each do |prompt| %>
-    <div class="row" id="prompt_<%=prompt.id%>">
-      <h3>Would you rather...</h3>
-      <div class="col-sm-4">
-        <h3><%= prompt.option_a %></h3>
-      </div>
-      <div class="col-sm-2">
-        <h4>or</h4>
-        <p id="total_<%= prompt.id %>">Total: <%= prompt.votes_a + prompt.votes_b %></p>
-      </div>
-      <div class="col-sm-4">
-        <h3><%= prompt.option_b %></h3>
-      </div>
-      <div class="col-md-4 offset-md-4">
-        <div class="AB_vote" id="vote_<%= prompt.id %>">
-          <%= form_tag("/prompts/#{prompt.id}", method: :patch, remote: true) do %>
-            <%= radio_button_tag :vote, value: "Option A"  %>
-            <%= label_tag :vote, 'Option A' %><br>
-            <%= radio_button_tag :vote, value: "Option B" %>
-            <%= label_tag :vote, 'Option B' %>
-          <% end %>
+  <% if @prompts.any? %>
+    <% @prompts.each do |prompt| %>
+      <div class="row" id="prompt_<%=prompt.id%>">
+        <h3>Would you rather...</h3>
+        <div class="col-sm-4">
+          <h3><%= prompt.option_a %></h3>
         </div>
-        <p><%= prompt.description %></p>
+        <div class="col-sm-2">
+          <h4>or</h4>
+          <p id="total_<%= prompt.id %>">Total: <%= prompt.votes_a + prompt.votes_b %></p>
+        </div>
+        <div class="col-sm-4">
+          <h3><%= prompt.option_b %></h3>
+        </div>
+        <div class="col-md-4 offset-md-4">
+          <div class="AB_vote" id="vote_<%= prompt.id %>">
+            <%= form_tag("/prompts/#{prompt.id}", method: :patch, remote: true) do %>
+              <%= radio_button_tag :vote, "Option A" %>
+              <%= label_tag :vote, 'Option A' %><br>
+              <%= radio_button_tag :vote, "Option B"%>
+              <%= label_tag :vote, 'Option B' %>
+            <% end %>
+          </div>
+          <p><%= prompt.description %></p>
+        </div>
+        <%= link_to "Delete", prompt_path(prompt), data: { confirm: 'Are you sure?', method: :delete} %>
       </div>
-      <%= link_to "Delete", prompt_path(prompt), data: { confirm: 'Are you sure?', method: :delete} %>
-    </div>
-    <hr>
+      <hr>
+      <% end %>
     <% end %>
 </div>

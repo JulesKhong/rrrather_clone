@@ -6,8 +6,9 @@ describe 'the prompt' do
     visit prompts_path
     expect(page).to have_content "steal a plane"
   end
-  it 'should allow user to create a new prompt' do
-    visit new_prompt_path
+  it 'should allow user to create a new prompt', js: true do
+    visit root_path
+    click_on 'New'
     fill_in 'Option A', with: 'walk a tightrope across grand canyon without training'
     fill_in 'Option B', with: 'splunking a mile underground and back without a headlight'
     fill_in 'Author', with: 'Dilly'
@@ -16,10 +17,22 @@ describe 'the prompt' do
     expect(page).to have_content('You can\'t win')
   end
 
-  it 'shouls allow user to delete a prompt' do
+  it 'should allow user to delete a prompt' do
     FactoryGirl.create(:prompt)
     visit root_path
     click_on 'Delete'
-    expect(page).to not_have_content('Would you rather...')
+    expect(page).to have_no_content('Would you rather...')
+  end
+
+  it 'should allow a user to see a prompt option' do
+    FactoryGirl.create(:prompt)
+    visit root_path
+    expect(page).to have_content('Option A')
+  end
+  it 'should allow a user to vote for a prompt option', js: true do
+    FactoryGirl.create(:prompt)
+    visit root_path
+    choose 'vote_Option_A'
+    expect(page).to have_content('option a: 1')
   end
 end
