@@ -30,7 +30,6 @@ class PromptsController < ApplicationController
 
   def update
     @prompt = Prompt.find(params[:id])
-    #binding.pry
     if params[:vote] === "Option A"
       @prompt.votes_a += 1
     else

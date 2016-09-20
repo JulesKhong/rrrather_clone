@@ -35,4 +35,13 @@ describe 'the prompt' do
     choose 'vote_Option_A'
     expect(page).to have_content('option a: 1')
   end
+  it 'should allow user to search for a prompt', js: true do
+    FactoryGirl.create_list(:prompt, 3)
+    target = Prompt.first
+    not_target = Prompt.last
+    visit root_path
+    fill_in 'search', with: "#{target.option_a}"
+    click_on 'Search'
+    expect(page).to have_no_content("#{not_target.option_a}")
+  end
 end

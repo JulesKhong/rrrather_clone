@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :prompt do
-    option_a "steal a car"
+    sequence(:option_a) { |n| "Swallow #{n} bees"}
     option_b "steal a plane"
     votes_a 0
     votes_b 0
