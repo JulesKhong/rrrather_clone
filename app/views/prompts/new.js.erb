@@ -1,2 +1,6 @@
 $('#new_link').hide();
-$('#new_prompt').html('<%= j render("form") %>');
+$('#new_prompt').html('<%= j render("form") %>' );
+$('#cancel').click(function(){
+  $('#new_prompt').empty();
+  $('#new_link').show();
+});
