@@ -1,6 +1,6 @@
 class PromptsController < ApplicationController
   def index
-    @prompts = Prompt.all
+    @prompts = Prompt.search(params[:search])
   end
 
   def new
@@ -44,7 +44,6 @@ class PromptsController < ApplicationController
   end
 
   private
-
   def prompt_params
     params.require(:prompt).permit(:optionA, :optionB, :author, :description)
   end

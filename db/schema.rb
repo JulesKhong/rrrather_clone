@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919160022) do
+ActiveRecord::Schema.define(version: 20160920181653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20160919160022) do
   end
 
   create_table "prompts", force: :cascade do |t|
-    t.string   "optionA"
-    t.string   "optionB"
-    t.integer  "votesA"
-    t.integer  "votesB"
+    t.string   "option_a"
+    t.string   "option_b"
+    t.integer  "votes_a"
+    t.integer  "votes_b"
     t.string   "imageA_file_name"
     t.string   "imageA_content_type"
     t.integer  "imageA_file_size"
